@@ -2,7 +2,7 @@ var http = require('http');
   
 var server = http.createServer(function (req, res) {
   res.writeHead(200, { "Content-Type": "text/plain" })
-  res.end("Hello worldi by @felipernb\n");
+  res.end("Hello world by @felipernb\n");
 });
   
 server.listen(process.env.PORT || 8001);
