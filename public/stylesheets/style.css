@@ -1,8 +1,10 @@
 body {
-  padding: 50px;
-  font: 14px Helvetica, Arial, sans-serif;
+  font: 12pt Helvetica, Arial, sans-serif;
 }
 
+h1 {
+	margin:0;
+}
 a {
   color: #00B7FF;
 }
