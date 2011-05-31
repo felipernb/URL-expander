@@ -1,2 +1,2 @@
 <p>Short URL: <%=shortUrl%></p>
-<p>Expanded URL: <a href="<%=longUrl%>"><%=longUrl%></a></p>
+<p>Expanded URL: <% if (validUrl) { %><a href="<%=longUrl%>"><% }%><%=longUrl%><% if(validUrl) { %></a><%}%></p>

@@ -28,15 +28,11 @@ app.configure('production', function(){
 
 // Routes
 
-/*app.get('/', function(req, res){
-  res.render('index', {
-    title: 'epicprogramming'
-  });
-});
-*/
-
 app.get('/url.json', function(req, res) {
 	var shortUrl = req.param('url', null);
+	if (!shortUrl) {
+		res.end("Error: Pass the shortened url as a GET param: http://felipernb.no.de?url=example.com");
+	}
 	url_expander.expand(shortUrl, function(longUrl) { res.end( JSON.stringify({'shortUrl': shortUrl, 'longUrl': longUrl})); }); 	
 });
 
@@ -50,8 +46,14 @@ app.post('/url',function(req, res) {
 												res.render('show_url', 
 																{title: 'URL expander', 
 																shortUrl: req.body.shortUrl,
-																'longUrl': longUrl});
+																'longUrl': longUrl,
+																validUrl: longUrl && longUrl.match(/^[a-zA-Z0-9.\/?=&:-]+$/)
+																});
 											}); 
+});
+
+app.get('/cache_dump', function(req, res) {
+					res.end(JSON.stringify(url_expander.cache));
 });
 
 
