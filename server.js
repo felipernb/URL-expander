@@ -4,7 +4,7 @@
  */
 
 var express = require('express');
-
+var url_expander = require('./url_expander');
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -28,11 +28,32 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', function(req, res){
+/*app.get('/', function(req, res){
   res.render('index', {
     title: 'epicprogramming'
   });
 });
+*/
+
+app.get('/url.json', function(req, res) {
+	var shortUrl = req.param('url', null);
+	url_expander.expand(shortUrl, function(longUrl) { res.end( JSON.stringify({'shortUrl': shortUrl, 'longUrl': longUrl})); }); 	
+});
+
+app.get('/',function(req, res) {
+	res.render('url', {title: 'URL expander'});
+});
+
+app.post('/url',function(req, res) {
+
+	url_expander.expand(req.body.shortUrl, function(longUrl) {
+												res.render('show_url', 
+																{title: 'URL expander', 
+																shortUrl: req.body.shortUrl,
+																'longUrl': longUrl});
+											}); 
+});
+
 
 app.listen(process.env.PORT || 3000);
 console.log("Express server listening on port %d", app.address().port);
