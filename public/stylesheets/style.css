@@ -13,7 +13,7 @@ input {
 	font-size:24pt;
 	font-family: Helvetica;
 }
-
+.api { font-size:0.7em;}
 #main {
 	margin:60px;
 }

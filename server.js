@@ -37,15 +37,15 @@ app.get('/url.json', function(req, res) {
 });
 
 app.get('/',function(req, res) {
-	res.render('url', {title: 'URL expander'});
+	res.render('url', {title: 'URL expander', shortUrl: 'bit.ly/lSgv26'});
 });
 
-app.post('/url',function(req, res) {
-
-	url_expander.expand(req.body.shortUrl, function(longUrl) {
+app.get('/url',function(req, res) {
+	var shortUrl = req.param('url', null);
+	url_expander.expand(shortUrl, function(longUrl) {
 												res.render('show_url', 
 																{title: 'URL expander', 
-																shortUrl: req.body.shortUrl,
+																'shortUrl': shortUrl,
 																'longUrl': longUrl,
 																validUrl: longUrl && longUrl.match(/^[a-zA-Z0-9.\/?=&:-]+$/)
 																});
