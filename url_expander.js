@@ -27,7 +27,7 @@ exports.expand = function(rawUrl, func) {
 	};
 	
 	var req = http.get(options, function (res) {
-		if (res.headers.location) {
+		if (res.headers.location && res.headers.location != rawUrl) {
 			func(res.headers.location);
 			if (cache_size >= 10000) {
 				cache = {};
