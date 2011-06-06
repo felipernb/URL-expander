@@ -12,7 +12,26 @@ h1 {
 input {
 	font-size:24pt;
 	font-family: Helvetica;
+	border-radius: 5px;
+	outline:none;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border:1px solid rgba(0,0,0, 0.2);
+	color: #CCC;
 }
+
+input:focus {
+    box-shadow: 0 0 5px rgba(204, 204, 204, 1);
+    -webkit-box-shadow: 0 0 5px rgba(204, 204, 204, 1); 
+    -moz-box-shadow: 0 0 5px rgba(204, 204, 204, 1);
+    border:1px solid rgba(204,204,204, 0.8); 
+	color: #888;
+}
+
 .api { font-size:0.7em;}
 #main {
 	margin:60px;
