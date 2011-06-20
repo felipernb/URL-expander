@@ -42,14 +42,14 @@ app.get('/',function(req, res) {
 
 app.get('/url',function(req, res) {
 	var shortUrl = req.param('url', null);
-	url_expander.expand(shortUrl, function(longUrl) {
-												res.render('show_url', 
-																{title: 'URL expander', 
-																'shortUrl': shortUrl,
-																'longUrl': longUrl,
-																validUrl: longUrl && longUrl.match(/^[a-zA-Z0-9.\/?=&:-]+$/)
-																});
-											}); 
+	var renderLongUrl = function(longUrl) {
+		res.render('show_url', {title: 'URL expander', 
+								'shortUrl': shortUrl,
+								'longUrl': longUrl,
+								validUrl: longUrl && longUrl.match(/^[a-zA-Z0-9.\/?=&:-]+$/)});
+	};
+											
+	url_expander.expand(shortUrl, renderLongUrl); 
 });
 
 app.get('/cache_dump', function(req, res) {
