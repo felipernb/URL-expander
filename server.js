@@ -37,7 +37,7 @@ app.get('/url.json', function(req, res) {
 });
 
 app.get('/',function(req, res) {
-	res.render('url', {title: 'URL expander', shortUrl: 'bit.ly/lSgv26'});
+	res.render('index', {title: 'URL expander', shortUrl: 'bit.ly/lSgv26'});
 });
 
 app.get('/url',function(req, res) {
